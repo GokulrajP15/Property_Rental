@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Rental Applications</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Tenant</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+        <tr>
+            <td>{{ application.property.title }}</td>
+            <td>{{ application.tenant.username }}</td>
+            <td>{{ application.get_status_display }}</td>
+            <td>
+                <a href="{% url 'rental_application_update' application.pk %}" class="btn btn-sm btn-secondary">Update</a>
+                {% if application.status == 'approved' and user.user_type == 'owner' %}
+                <a href="{% url 'rental_agreement_create' application.pk %}" class="btn btn-sm btn-primary">Create Agreement</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No applications found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

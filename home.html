@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center" >Welcome to Property Rental Platform</h1>
+<p class="text-center">Find your perfect rental property or list your property for rent.</p>
+<div class="row">
+    <div class="col-md-6 offset-md-1">
+        <h2>For Tenants</h2>
+        <ul>
+            <li>View available properties</li>
+            <li>Apply for rentals</li>
+            <li>Manage your rental agreements</li>
+        </ul>
+        <a href="{% url 'property_list' %}" class="btn btn-primary">Properties</a>
+    </div>
+    <div class="col-md">
+        <h2>For Property Owners</h2>
+        <ul>
+            <li>List your properties</li>
+            <li>Manage rental applications</li>
+            <li>Communicate with tenants</li>
+        </ul>
+        <a href="{% url 'register' %}" class="btn btn-primary">List Your Property</a>
+    </div>
+</div>
+{% endblock %}
